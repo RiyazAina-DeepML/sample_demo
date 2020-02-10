@@ -1,0 +1,30 @@
+# Steps to train instance segmentation on own dataset using mmdetect library
+
+1.Create new repository with "any name"
+	ex- "instance_Seg_repo_on_tomato"
+
+2.add data folder inside empty repository created in step 1.
+	a.data folder contains images folder where all images present
+	b. along with the trainval.json file which contains annotations of all instances for images folder in coco format only.
+
+3.keep the "train_instance_segmentation_notebook.ipynb" notebook file inside the repository so we can upload it on google colab to run there.
+
+4. run git submodule add "https://github.com/open-mmlab/mmdetection.git"
+5.run git add --all 
+6. run git commit -m "add your own message"
+7. run git push 
+8. open notebook "train_instance_segmentation_notebook.ipynb" in google colab
+9.make changes in git_repo_url = "to your repo url created in step 1"
+10.inside CONFIG FILE CELL , change the path of data root to your data folder path and 
+11.after "%%writefile" in the same cell provide the path of config file of "mask-rcnn" or any other architecture
+
+12.to start training run train.py file inside the tools folder 
+
+	"!python3 /content/sample_demo/mmdetection/tools/train.py  /content/sample_demo/mmdetection/configs/mask_rcnn_r50_fpn_1x.py /content/mmdetection_instance_segmentation_REPO/mmdetection/configs/mask_rcnn_r50_fpn_1x.py" 
+	a. input argument is path "to config file of model" which is used for instance segmentation
+
+13. change dircetory path to mmdetection folder and run !python3 setup.py develop
+	ex-%cd /content/mmdetection_instance_segmentation_REPO/mmdetection
+
+14. test model using saved checkpoint inside "workdirs" folder
+
